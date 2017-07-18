@@ -36,6 +36,11 @@
 		4881808C1F1DE98100CDB26B /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 488180731F1DE98100CDB26B /* YYDiskCache.m */; };
 		4881808D1F1DE98100CDB26B /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 488180751F1DE98100CDB26B /* YYKVStorage.m */; };
 		4881808E1F1DE98100CDB26B /* YYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 488180771F1DE98100CDB26B /* YYMemoryCache.m */; };
+		488180911F1E0EF700CDB26B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488180901F1E0EF700CDB26B /* UIKit.framework */; };
+		488180931F1E0EFE00CDB26B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488180921F1E0EFE00CDB26B /* CoreFoundation.framework */; };
+		488180951F1E0F0600CDB26B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488180941F1E0F0600CDB26B /* QuartzCore.framework */; };
+		488180981F1E0F0E00CDB26B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 488180961F1E0F0E00CDB26B /* libsqlite3.0.tbd */; };
+		488180991F1E0F0E00CDB26B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 488180971F1E0F0E00CDB26B /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +101,11 @@
 		488180751F1DE98100CDB26B /* YYKVStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYKVStorage.m; sourceTree = "<group>"; };
 		488180761F1DE98100CDB26B /* YYMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMemoryCache.h; sourceTree = "<group>"; };
 		488180771F1DE98100CDB26B /* YYMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMemoryCache.m; sourceTree = "<group>"; };
+		488180901F1E0EF700CDB26B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		488180921F1E0EFE00CDB26B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		488180941F1E0F0600CDB26B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		488180961F1E0F0E00CDB26B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		488180971F1E0F0E00CDB26B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +113,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488180981F1E0F0E00CDB26B /* libsqlite3.0.tbd in Frameworks */,
+				488180991F1E0F0E00CDB26B /* libsqlite3.tbd in Frameworks */,
+				488180951F1E0F0600CDB26B /* QuartzCore.framework in Frameworks */,
+				488180931F1E0EFE00CDB26B /* CoreFoundation.framework in Frameworks */,
+				488180911F1E0EF700CDB26B /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +129,7 @@
 			children = (
 				48817FDF1F1DE8DA00CDB26B /* TYNetworkTool */,
 				48817FDE1F1DE8DA00CDB26B /* Products */,
+				4881808F1F1E0EF700CDB26B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,6 +250,18 @@
 				488180771F1DE98100CDB26B /* YYMemoryCache.m */,
 			);
 			path = YYCache;
+			sourceTree = "<group>";
+		};
+		4881808F1F1E0EF700CDB26B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				488180961F1E0F0E00CDB26B /* libsqlite3.0.tbd */,
+				488180971F1E0F0E00CDB26B /* libsqlite3.tbd */,
+				488180941F1E0F0600CDB26B /* QuartzCore.framework */,
+				488180921F1E0EFE00CDB26B /* CoreFoundation.framework */,
+				488180901F1E0EF700CDB26B /* UIKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -492,6 +520,7 @@
 				48817FF61F1DE8DA00CDB26B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
