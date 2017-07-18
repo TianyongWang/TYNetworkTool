@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "TYCacheTool.h"
+//#import "TYCacheTool.h"
 
 typedef NS_ENUM(NSUInteger, TYNetworkStatusType) {
     /// 未知网络

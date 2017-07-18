@@ -118,7 +118,7 @@ static AFHTTPSessionManager *_sessionManager;
                   success:(TYHttpRequestSuccess)success
                   failure:(TYHttpRequestFailed)failure {
     //读取缓存
-    responseCache != nil ? responseCache([TYCacheTool httpCacheForURL:URL parameters:parameters]) : nil;
+//    responseCache != nil ? responseCache([TYCacheTool httpCacheForURL:URL parameters:parameters]) : nil;
     
     NSURLSessionTask *sessionTask = [_sessionManager GET:URL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -128,7 +128,7 @@ static AFHTTPSessionManager *_sessionManager;
         [[self allSessionTask] removeObject:task];
         success ? success(responseObject) : nil;
         //对数据进行异步缓存
-        responseCache!=nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters] : nil;
+//        responseCache!=nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters] : nil;
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -150,7 +150,7 @@ static AFHTTPSessionManager *_sessionManager;
                    success:(TYHttpRequestSuccess)success
                    failure:(TYHttpRequestFailed)failure {
     //读取缓存
-    responseCache!=nil ? responseCache([TYCacheTool httpCacheForURL:URL parameters:parameters]) : nil;
+//    responseCache!=nil ? responseCache([TYCacheTool httpCacheForURL:URL parameters:parameters]) : nil;
     
     NSURLSessionTask *sessionTask = [_sessionManager POST:URL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -160,7 +160,7 @@ static AFHTTPSessionManager *_sessionManager;
         [[self allSessionTask] removeObject:task];
         success ? success(responseObject) : nil;
         //对数据进行异步缓存
-        responseCache!=nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters] : nil;
+//        responseCache!=nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters] : nil;
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

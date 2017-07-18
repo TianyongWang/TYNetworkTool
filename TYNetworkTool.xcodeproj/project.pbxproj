@@ -30,7 +30,6 @@
 		488180861F1DE98100CDB26B /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 488180651F1DE98100CDB26B /* UIProgressView+AFNetworking.m */; };
 		488180871F1DE98100CDB26B /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 488180671F1DE98100CDB26B /* UIRefreshControl+AFNetworking.m */; };
 		488180881F1DE98100CDB26B /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 488180691F1DE98100CDB26B /* UIWebView+AFNetworking.m */; };
-		488180891F1DE98100CDB26B /* TYCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4881806C1F1DE98100CDB26B /* TYCacheTool.m */; };
 		4881808A1F1DE98100CDB26B /* TYNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4881806E1F1DE98100CDB26B /* TYNetworkTool.m */; };
 		4881808B1F1DE98100CDB26B /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 488180711F1DE98100CDB26B /* YYCache.m */; };
 		4881808C1F1DE98100CDB26B /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 488180731F1DE98100CDB26B /* YYDiskCache.m */; };
@@ -89,8 +88,6 @@
 		488180671F1DE98100CDB26B /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		488180681F1DE98100CDB26B /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		488180691F1DE98100CDB26B /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
-		4881806B1F1DE98100CDB26B /* TYCacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCacheTool.h; sourceTree = "<group>"; };
-		4881806C1F1DE98100CDB26B /* TYCacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCacheTool.m; sourceTree = "<group>"; };
 		4881806D1F1DE98100CDB26B /* TYNetworkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYNetworkTool.h; sourceTree = "<group>"; };
 		4881806E1F1DE98100CDB26B /* TYNetworkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYNetworkTool.m; sourceTree = "<group>"; };
 		488180701F1DE98100CDB26B /* YYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCache.h; sourceTree = "<group>"; };
@@ -229,8 +226,6 @@
 		4881806A1F1DE98100CDB26B /* TYNetworkTool */ = {
 			isa = PBXGroup;
 			children = (
-				4881806B1F1DE98100CDB26B /* TYCacheTool.h */,
-				4881806C1F1DE98100CDB26B /* TYCacheTool.m */,
 				4881806D1F1DE98100CDB26B /* TYNetworkTool.h */,
 				4881806E1F1DE98100CDB26B /* TYNetworkTool.m */,
 			);
@@ -361,7 +356,6 @@
 				488180781F1DE98100CDB26B /* AFHTTPSessionManager.m in Sources */,
 				488180801F1DE98100CDB26B /* AFAutoPurgingImageCache.m in Sources */,
 				488180811F1DE98100CDB26B /* AFImageDownloader.m in Sources */,
-				488180891F1DE98100CDB26B /* TYCacheTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
