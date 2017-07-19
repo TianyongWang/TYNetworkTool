@@ -1,9 +1,9 @@
 
 Pod::Spec.new do |s| 
   s.name         = "TYNetworkTool"
-  s.version      = "0.0.2"
+  s.version      = "0.0.4"
+  s.summary      = "a easy use of AFNetworking"
   s.homepage	 = "https://github.com/TianyongWang/TYNetworkTool"
-  s.summary      = "A short description of TYNetworkTool."
   s.license	 = "MIT"
   s.author       = { "MasazumiQi" => "47940062@qq.com" }
   s.platform     = :ios

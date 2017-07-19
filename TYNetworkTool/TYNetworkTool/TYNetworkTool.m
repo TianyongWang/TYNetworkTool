@@ -336,8 +336,15 @@ static AFHTTPSessionManager *_sessionManager;
  */
 + (void)initialize {
     _sessionManager = [AFHTTPSessionManager manager];
+    _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    _sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     _sessionManager.requestSerializer.timeoutInterval = 30.f;
-    _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"aTYlication/json", @"text/html", @"text/json", @"text/plain", @"text/javascript", @"text/xml", @"image/*", nil];
+//    _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"aTYlication/json", @"text/html", @"text/json", @"text/plain", @"text/javascript", @"text/xml", @"image/*", nil];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    
+//    manager.requestSerializer.timeoutInterval = 15;
     // 打开状态栏的等待菊花
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 }
