@@ -27,16 +27,6 @@ typedef NS_ENUM (NSUInteger,TYTimeUnit) {
  @param parameters 请求参数
  */
 + (void)setHttpCache:(id)httpData URL:(NSString *)url parameters:(NSDictionary *)parameters;
-
-/**
- 获取缓存数据
-
- @param url 请求url
- @param parameter 请求参数
- @return 缓存数据
- */
-+ (id)httpCacheWithURL:(NSString *)url parameters:(NSDictionary *)parameter;
-
 /**
  带时效的缓存
 
@@ -47,5 +37,13 @@ typedef NS_ENUM (NSUInteger,TYTimeUnit) {
  @param life 时效数值，具体单位与timeUnit有关,最小单位 秒
  */
 + (void)setHttpCache:(id)httpData URL:(NSString *)url parameters:(NSDictionary *)parameters userfulLifeUnit:(TYTimeUnit)timeUnit life:(double)life;
+/**
+ 获取缓存数据
+ 
+ @param url 请求url
+ @param parameter 请求参数
+ @return 缓存数据
+ */
++ (id)httpCacheWithURL:(NSString *)url parameters:(NSDictionary *)parameter;
 
 @end
