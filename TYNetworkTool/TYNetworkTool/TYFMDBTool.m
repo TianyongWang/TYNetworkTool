@@ -132,7 +132,7 @@
         long long thatTime = [set longLongIntForColumn:@"thatTime"];
         long long userfullLife = [set longLongIntForColumn:@"userfullLife"];
         long long currentTimeSp = [self getCurrentTimeSp];
-        long long mix = (currentTimeSp - thatTime);
+//        long long mix = (currentTimeSp - thatTime);
         if ((currentTimeSp - thatTime) > userfullLife) {
             return nil;
         }
