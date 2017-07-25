@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "7.0"
   s.source       = { :git => "https://github.com/TianyongWang/TYNetworkTool.git" ,:tag => "#{s.version}"}
   s.requires_arc = true
-  s.source_files = "TYNetworkTool/*.{h,m}"
+  s.source_files = "TYNetworkTool/TYNetworkTool/*.{h,m}"
   s.frameworks   = "UIKit","Foundation"
   s.dependency "AFNetworking"
   s.dependency "FMDB"
