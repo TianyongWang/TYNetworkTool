@@ -10,6 +10,7 @@
 //#import "TYNetworkTool.h"
 #import "TYHttpRequest.h"
 
+
 @interface ViewController ()
 
 @end
@@ -27,10 +28,13 @@
 }
 - (void)noCacheHttpRequest:(UIButton *)button {
     [TYHttpRequest getDataWithParameters:@{ @"accountId":@"d7dc065f4f224af4aa2066bcc3e32c7f",@"pageNo":@1,@"pageSize":@100,@"rankType":@0,@"type":@0} success:^(id response) {
-        NSLog(@"%@",response);
+        
+        NSLog(@"返回的数据是%@",response);
     } failure:^(NSError *error) {
         
     }];
+    
+    
 }
 
 

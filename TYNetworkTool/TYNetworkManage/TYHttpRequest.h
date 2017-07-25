@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class TYNetworkTool;
 
 /**
  请求成功的回调

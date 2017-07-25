@@ -9,6 +9,7 @@
 #import "TYNetworkTool.h"
 #import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "TYCacheTool.h"
 
 #ifdef DEBUG
 #define TYLog(...) printf("[%s] %s [第%d行]: %s\n", __TIME__ ,__PRETTY_FUNCTION__ ,__LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String])
@@ -118,7 +119,10 @@ static AFHTTPSessionManager *_sessionManager;
                   success:(TYHttpRequestSuccess)success
                   failure:(TYHttpRequestFailed)failure {
     //读取缓存
-//    responseCache != nil ? responseCache([TYCacheTool httpCacheForURL:URL parameters:parameters]) : nil;
+    if ([TYCacheTool httpCacheWithURL:URL parameters:parameters] != nil) {
+        responseCache != nil ? responseCache([TYCacheTool httpCacheWithURL:URL parameters:parameters]) : nil;
+    }
+    
     
     NSURLSessionTask *sessionTask = [_sessionManager GET:URL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -128,7 +132,7 @@ static AFHTTPSessionManager *_sessionManager;
         [[self allSessionTask] removeObject:task];
         success ? success(responseObject) : nil;
         //对数据进行异步缓存
-//        responseCache!=nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters] : nil;
+        responseObject != nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters] : nil;
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -150,7 +154,9 @@ static AFHTTPSessionManager *_sessionManager;
                    success:(TYHttpRequestSuccess)success
                    failure:(TYHttpRequestFailed)failure {
     //读取缓存
-//    responseCache!=nil ? responseCache([TYCacheTool httpCacheForURL:URL parameters:parameters]) : nil;
+    if ([TYCacheTool httpCacheWithURL:URL parameters:parameters] != nil) {
+        responseCache != nil ? responseCache([TYCacheTool httpCacheWithURL:URL parameters:parameters]) : nil;
+    }
     
     NSURLSessionTask *sessionTask = [_sessionManager POST:URL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -160,7 +166,7 @@ static AFHTTPSessionManager *_sessionManager;
         [[self allSessionTask] removeObject:task];
         success ? success(responseObject) : nil;
         //对数据进行异步缓存
-//        responseCache!=nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters] : nil;
+        responseCache!=nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters] : nil;
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -174,6 +180,43 @@ static AFHTTPSessionManager *_sessionManager;
     sessionTask ? [[self allSessionTask] addObject:sessionTask] : nil ;
     return sessionTask;
 }
+
+#pragma mark - GET请求，带时效自动缓存
++ (__kindof NSURLSessionTask *)GET:(NSString *)URL
+                        parameters:(id)parameters
+                   userfulLifeUnit:(TYTimeUnit)timeUnit
+                      userfullLife:(double)life
+                     responseCache:(TYHttpRequestCache)responseCache
+                           success:(TYHttpRequestSuccess)success
+                           failure:(TYHttpRequestFailed)failure {
+    //读取缓存
+    if ([TYCacheTool httpCacheWithURL:URL parameters:parameters] != nil) {
+        responseCache != nil ? responseCache([TYCacheTool httpCacheWithURL:URL parameters:parameters ]) : nil;
+    }
+    
+    NSURLSessionTask *sessionTask = [_sessionManager GET:URL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (_isOpenLog) {TYLog(@"responseObject = %@",[self jsonToString:responseObject]);}
+        [[self allSessionTask] removeObject:task];
+        success ? success(responseObject) : nil;
+        //对数据进行异步缓存
+        responseObject != nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters userfulLifeUnit:timeUnit life:life] : nil;
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (_isOpenLog) {TYLog(@"error = %@",error);}
+        [[self allSessionTask] removeObject:task];
+        failure ? failure(error) : nil;
+        
+    }];
+    // 添加sessionTask到数组
+    sessionTask ? [[self allSessionTask] addObject:sessionTask] : nil ;
+    
+    return sessionTask;
+}
+
 
 #pragma mark - 上传文件
 + (NSURLSessionTask *)uploadFileWithURL:(NSString *)URL
@@ -310,6 +353,7 @@ static AFHTTPSessionManager *_sessionManager;
 + (NSString *)jsonToString:(id)data {
     if(data == nil) { return nil; }
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
+    
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
@@ -340,9 +384,6 @@ static AFHTTPSessionManager *_sessionManager;
     _sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     _sessionManager.requestSerializer.timeoutInterval = 30.f;
 //    _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"aTYlication/json", @"text/html", @"text/json", @"text/plain", @"text/javascript", @"text/xml", @"image/*", nil];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
     
 //    manager.requestSerializer.timeoutInterval = 15;
     // 打开状态栏的等待菊花
