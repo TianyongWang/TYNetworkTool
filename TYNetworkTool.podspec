@@ -14,6 +14,6 @@ Pod::Spec.new do |s|
   s.source_files = "TYNetworkTool/*.{h,m}"
   s.frameworks   = "UIKit","Foundation"
   s.dependency "AFNetworking"
-  s.dependency "YYCache"
+  s.dependency "FMDB"
 end
 
