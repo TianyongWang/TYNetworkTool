@@ -21,16 +21,23 @@
  */
 + (instancetype)fmdbWithName:(NSString *)name;
 
+/**
+ 创建表单
+
+ @param tableName 表单名
+ @return FMDB实例
+ */
 - (instancetype)createTableWithName:(NSString *)tableName;
 
 
 /**
- 储存缓存请求来的回调数据
-
+ 储存缓存请求来的回调数据(无时效）
+ 
  @param httpData 回调数据
  @param cacheKey 存储的关键字
  */
 - (void)setHttpCache:(id)httpData forCacheKey:(NSString *)cacheKey;
+
 /**
  带时效的缓存
  
@@ -41,5 +48,11 @@
 - (void)setHttpCache:(id)httpData userfulLife:(double)life forCacheKey:(NSString *)cacheKey;
 
 
+/**
+ 获取本地缓存
+
+ @param cacheKey 存储的关键字
+ @return 缓存本地的网络请求
+ */
 - (id)httpCacheForCacheKey:(NSString *)cacheKey;
 @end

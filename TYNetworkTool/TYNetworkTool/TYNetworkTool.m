@@ -217,6 +217,41 @@ static AFHTTPSessionManager *_sessionManager;
     return sessionTask;
 }
 
+#pragma mark - POST请求，带时效自动缓存
++ (__kindof NSURLSessionTask *)POST:(NSString *)URL
+                         parameters:(id)parameters
+                    userfulLifeUnit:(TYTimeUnit)timeUnit
+                       userfullLife:(double)life
+                      responseCache:(TYHttpRequestCache)responseCache
+                            success:(TYHttpRequestSuccess)success
+                            failure:(TYHttpRequestFailed)failure {
+    //读取缓存
+    if ([TYCacheTool httpCacheWithURL:URL parameters:parameters] != nil) {
+        responseCache != nil ? responseCache([TYCacheTool httpCacheWithURL:URL parameters:parameters]) : nil;
+    }
+    
+    NSURLSessionTask *sessionTask = [_sessionManager POST:URL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (_isOpenLog) {TYLog(@"responseObject = %@",[self jsonToString:responseObject]);}
+        [[self allSessionTask] removeObject:task];
+        success ? success(responseObject) : nil;
+        //对数据进行异步缓存
+        responseObject != nil ? [TYCacheTool setHttpCache:responseObject URL:URL parameters:parameters userfulLifeUnit:timeUnit life:life] : nil;
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (_isOpenLog) {TYLog(@"error = %@",error);}
+        [[self allSessionTask] removeObject:task];
+        failure ? failure(error) : nil;
+        
+    }];
+    
+    // 添加最新的sessionTask到数组
+    sessionTask ? [[self allSessionTask] addObject:sessionTask] : nil ;
+    return sessionTask;
+}
 
 #pragma mark - 上传文件
 + (NSURLSessionTask *)uploadFileWithURL:(NSString *)URL

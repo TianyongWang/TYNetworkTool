@@ -18,11 +18,12 @@
 static NSString *const TYNetworkResponseCache = @"t_httpCacheTable";
 
 @implementation TYCacheTool
+#pragma mark - 无失效日期缓存
 + (void)setHttpCache:(id)httpData URL:(NSString *)url parameters:(NSDictionary *)parameters {
     NSString *cacheKey = [self cacheWithRUL:url parameters:parameters];
     [[self fmdbCraete] setHttpCache:httpData forCacheKey:cacheKey];
 }
-
+#pragma mark - 带时效的缓存
 + (void)setHttpCache:(id)httpData URL:(NSString *)url parameters:(NSDictionary *)parameters userfulLifeUnit:(TYTimeUnit)timeUnit life:(double)life {
     NSInteger k = 1;
     switch (timeUnit) {
@@ -49,19 +50,18 @@ static NSString *const TYNetworkResponseCache = @"t_httpCacheTable";
     [[self fmdbCraete] setHttpCache:httpData userfulLife:fullSec forCacheKey:cacheKey];
 }
 
-
-
+#pragma mark - 创建FMDBTool实例
 + (TYFMDBTool *)fmdbCraete{
     return [[TYFMDBTool fmdbWithName:TYNetworkResponseCache] createTableWithName:TYNetworkResponseCache];
 }
-
+#pragma mark - 获取缓存数据
 + (id)httpCacheWithURL:(NSString *)url parameters:(NSDictionary *)parameter {
     NSString *cacheKey = [self cacheWithRUL:url parameters:parameter];
     id data = [[self fmdbCraete] httpCacheForCacheKey:cacheKey];
     return data;
 }
 
-
+#pragma mark - 拼接cacheKey
 + (NSString *)cacheWithRUL:(NSString *)url parameters:(NSDictionary *)parameters {
     if (!parameters) {
         return url;

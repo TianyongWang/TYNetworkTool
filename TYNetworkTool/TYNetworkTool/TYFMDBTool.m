@@ -16,10 +16,11 @@
 
 
 @implementation TYFMDBTool
-
+#pragma mark - 根据name，创建Tool实例
 + (instancetype)fmdbWithName:(NSString *)name{
     return [[TYFMDBTool alloc]initWithName:name];
 }
+#pragma mark - 根据name创建Tool实例
 - (instancetype)initWithName:(NSString *)name{
     if (name.length == 0) {
         return nil;
@@ -29,6 +30,7 @@
     NSLog(@"数据库缓存地址是%@",path);
     return [self initWithPath:path];
 }
+#pragma mark - 根据path创建Tool实例
 - (instancetype)initWithPath:(NSString *)path {
     if (path.length == 0) {
         return nil;
@@ -41,6 +43,7 @@
         return  nil;
     }
 }
+#pragma mark - 创建表单
 - (instancetype)createTableWithName:(NSString *)tableName {
     if (tableName.length == 0) {
         tableName = @"t_httpCacheTable";
@@ -55,7 +58,7 @@
     }
     
 }
-
+#pragma mark - 储存缓存请求来的回调数据(无时效）
 - (void)setHttpCache:(id<NSCoding>)httpData forCacheKey:(NSString *)cacheKey {
     dispatch_sync(dispatch_get_global_queue(0, 0), ^{
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:httpData];
@@ -85,6 +88,7 @@
         [self.db close];
     });
 }
+#pragma mark - 带时效的缓存
 - (void)setHttpCache:(id<NSCopying>)httpData userfulLife:(double)life forCacheKey:(NSString *)cacheKey {
     dispatch_sync(dispatch_get_global_queue(0, 0), ^{
         if ([self.db open]) {
@@ -138,7 +142,7 @@
     }
     return result;
 }
-
+#pragma mark - 获取当前时间戳
 - (long long)getCurrentTimeSp {
     NSDate *nowDate = [NSDate date];
     NSTimeInterval nowTimesp = [nowDate timeIntervalSince1970];

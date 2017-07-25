@@ -161,6 +161,25 @@ typedef void(^TYNetworkStatus)(TYNetworkStatusType status);
                             failure:(TYHttpRequestFailed)failure;
 
 /**
+ GET请求，带时效自动缓存
+ 
+ @param URL 请求地址
+ @param parameters 请求参数
+ @param life 缓存时效
+ @param responseCache 缓存数据的回调
+ @param success 请求成功的回调
+ @param failure 请求失败的回调
+ @return 返回的对象可取消请求,调用cancel方法
+ */
++ (__kindof NSURLSessionTask *)POST:(NSString *)URL
+                        parameters:(id)parameters
+                   userfulLifeUnit:(TYTimeUnit)timeUnit
+                      userfullLife:(double)life
+                     responseCache:(TYHttpRequestCache)responseCache
+                           success:(TYHttpRequestSuccess)success
+                           failure:(TYHttpRequestFailed)failure;
+
+/**
  *  上传文件
  *
  *  @param URL        请求地址

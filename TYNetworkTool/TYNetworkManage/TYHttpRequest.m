@@ -21,13 +21,14 @@
 
 + (NSURLSessionTask *)requestWithURL:(NSString *)URL parameters:(NSDictionary *)parameter success:(TYRequestSuccess)success failure:(TYRequestFailure)failure
 {
-    
+    //无缓存请求
 //    return [TYNetworkTool GET:URL parameters:parameter success:^(id responseObject) {
 //        success(responseObject);
 //    } failure:^(NSError *error) {
 //        failure(error);
 //    }];
     
+    //有缓存请求
 //    return [TYNetworkTool GET:URL parameters:parameter responseCache:^(id responseCache) {
 //        NSLog(@"cache");
 //         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseCache options:NSJSONReadingAllowFragments error:nil];
@@ -41,6 +42,7 @@
 //        
 //    }];
     
+    //时效性缓存请求
     return [TYNetworkTool GET:URL parameters:parameter userfulLifeUnit:TYMinute userfullLife:0.1 responseCache:^(id responseCache) {
          NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseCache options:NSJSONReadingAllowFragments error:nil];
         NSLog(@"cache-%@",dict);
